@@ -11,6 +11,7 @@ import random
 from tankgame.local import *
 
 class EnemyTank(View, AutoMoveAble, MoveAble,AutoFire,BlockAble,SufferAble,DestroyAble):
+
     def __init__(self, **kwargs):
         super(EnemyTank, self).__init__(**kwargs, img='TankGame/img/p2tankD.gif')
 
@@ -119,13 +120,24 @@ class EnemyTank(View, AutoMoveAble, MoveAble,AutoFire,BlockAble,SufferAble,Destr
         return False
 
     def __reset(self):
-
+        views = self.views
         self.image = pygame.image.load('TankGame/img/p2tankD.gif')
         self.width = self.image.get_width()
         self.height = self.image.get_height()
-        self.x = random.randint(0, 19 * BLOCK_SIZE)
-        self.y = self.height
-        self.blood = 3
+        x = random.randint(0, 19 * BLOCK_SIZE)
+        y = self.height
+        moveList = list(filter(lambda view: isinstance(view, MoveAble), views))
+        for move in moveList:
+            if move is self:
+                continue
+            moveRect = pygame.Rect(move.x, move.y, move.width, move.height)
+            selfRect = pygame.Rect(x, y, self.width, self.height)
+            if moveRect.colliderect(selfRect):
+                return
+            else:
+                self.blood = 3
+                self.x = x
+                self.y = y
 
 
     class Score():

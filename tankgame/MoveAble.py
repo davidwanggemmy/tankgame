@@ -3,8 +3,11 @@
 """
 from tankgame.local import *
 import pygame
+from tankgame.Mytank import *
 
-class MoveAble:
+class MoveAble():
+
+
     def hasCollision(self, blockAble):
         # 记录当前的x和y
         x = self.x

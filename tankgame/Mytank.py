@@ -1,10 +1,11 @@
 from tankgame.MoveAble import *
 from tankgame.Bullet import *
 from tankgame.BlockAble import *
+from tankgame.MoveAble import *
 from tankgame.SufferAble import *
 from tankgame.DestroyAble import *
 from tankgame.View import *
-# from tankgame.View import *
+
 
 class Mytank(View, MoveAble,BlockAble,SufferAble,DestroyAble):
     def __init__(self, **kwargs):

@@ -115,7 +115,7 @@ def start():
                                 break
             destroyList = list(filter(lambda view: isinstance(view, DestroyAble), views))
             for destroyView in destroyList:
-
+                destroyView.views = views
                 if destroyView.needDestroy():
 
                     destroyResult = destroyView.showDestroy()

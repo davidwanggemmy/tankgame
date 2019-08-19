@@ -1,5 +1,6 @@
 
 class DestroyAble:
+
     def needDestroy(self):
         """
         是否需要被销毁
